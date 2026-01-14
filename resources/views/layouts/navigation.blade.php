@@ -16,6 +16,23 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @if (Auth::check() && in_array(Auth::user()->RolNaam, ['Praktijkmanagement', 'patient']))
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('Patient.index')" :active="request()->routeIs('Patient.index')">
+                            {{ _('Patient') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (Auth::check() && in_array(Auth::user()->RolNaam, ['Praktijkmanagement']))
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('praktijkmanagement.userroles')" :active="request()->routeIs('praktijkmanagement.userroles')">
+                            {{ _('Patient') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                    
             </div>
 
             <!-- Settings Dropdown -->
